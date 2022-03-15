@@ -6,15 +6,32 @@ println("Display Orientation, ", "width: ", displayWidth, "height: ", displayHei
 int x=width/4, y=height/4, rectWidth=width/2, rectHeight=height/2;
 int thin=width/50,thick=2*thin, resetDefault=1;
 color yellow=#F8FC64, purple=#FA00F6, colourResetBlack=#000000, colourResetWhite=#FFFFFF;
+color yellowNightMode=#F8FC00, purpleNightMode=#FA0096 ;
+color strokeColour, fillColour;
+float backGroungNightMode=0, blueBackgroundColour = random(255);
+int backGroungBlue;
+Boolean nightMode=false;
 //
 //Gray Scale, 0-255
 background(70); 
 //Colour RGB, random(a, b)
-background( color(random(0,255), random(255), random(255)) ); //Casting Reminder
+//Night Mode means colours cannot have blue // change random for night mode, hard code a "0"
+if (nightMode==true ) 
+{
+  backGroungBlue = int (backGroungNightMode);
+  strokeColour =yellowNightMode;
+  fillColour = purpleNightMode;
+} else 
+{
+  backGroungBlue = int (blueBackgroundColour);
+  strokeColour = yellow;
+  fillColour = purple;
+}
+background( color(random(0,255), random(255), backGroungBlue) ); //Casting Reminder
 //
 strokeWeight(thick);
-stroke(yellow); //yellowNightMode=#F8FC00
-fill(purple); //purpleNightMode=#FA0096
+stroke(strokeColour); //yellowNightMode //yellow
+fill(fillColour); // purpleNightMode //purple
 rect(x, y, rectWidth, rectHeight);
 strokeWeight(resetDefault);
 stroke(colourResetBlack);
